@@ -2,7 +2,28 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-
-{% crispy form %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="content-header">Index</h2>
+        <p class="content-sub-header">This page has the default form !</p>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-success">
+                        <h4 class="card-title">Simple Form</h4>
+                    </div>
+                    <p>This is the basic one</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                      {% crispy form %}
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
 
 {% endblock %}
