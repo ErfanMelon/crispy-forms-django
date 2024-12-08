@@ -18,7 +18,11 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                     <ul class="menu-content">
-                        <li class="active"><a href="/" class="menu-item">index</a>
+                        <li class="{% if request.resolver_match.url_name == 'index' %}active{% else %}is-shown{% endif %}"><a href="{% url 'index' %}" class="menu-item">Index</a>
+                        </li>
+                        <li class="{% if request.resolver_match.url_name == 'example' %}active{% else %}is-shown{% endif %}"><a href="{% url 'example' %}" class="menu-item">Example Form</a>
+                        </li>
+                    <li class="{% if request.resolver_match.url_name == 'contact' %}active{% else %}is-shown{% endif %}"><a href="{% url 'contact' %}" class="menu-item">Contact Form</a>
                         </li>
                     </ul>
                 </li>

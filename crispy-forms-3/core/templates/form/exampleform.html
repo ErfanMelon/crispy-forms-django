@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="content-header">Example Form</h2>
+        <p class="content-sub-header">This page has the default form !</p>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+                <div class="card-header">
+                    <div class="card-title-wrap bar-warning">
+                        <h4 class="card-title">Example Form</h4>
+                    </div>
+                    <p>This is example</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-block">
+                      {% crispy form %}
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+
+{% endblock %}

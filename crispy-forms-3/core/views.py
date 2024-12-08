@@ -1,11 +1,13 @@
 from django.contrib.auth import login
 from django.http import HttpResponse
 from django.shortcuts import render
+from crispy_forms.templatetags.crispy_forms_filters import as_crispy_field
+from django.shortcuts import redirect
 from django.template.context_processors import csrf
 from crispy_forms.utils import render_crispy_form
-from crispy_forms.templatetags.crispy_forms_filters import as_crispy_field
 
-from core.forms import UniversityForm
+
+from core.forms import *
 
 # Create your views here.
 def index(request):
@@ -43,3 +45,24 @@ def check_subject(request):
         'valid': not form['subject'].errors
     }
     return render(request, 'partials/field.html', context)
+def example_form(request):
+    if request.method == 'GET':
+        context = {'form': ExampleForm()}
+        return render(request, 'form/exampleform.html', context)
+    elif request.method == 'POST':
+        form = ExampleForm(request.POST or None)
+        if form.is_valid():
+            # You could actually save through AJAX and return a success code here
+            form.save()
+            return redirect('index')
+        ctx = {}
+        ctx.update(csrf(request))
+        form_html = render_crispy_form(form, context=ctx)
+        return render(request,'form/exampleform.html',{'form':form}); # {'success': False, 'form_html': form_html}
+
+
+def contact(request):
+    if request.method == 'GET':
+        form = ContactForm()
+        context = {'form' : form }
+        return render(request,'form/baseform.html',context)
